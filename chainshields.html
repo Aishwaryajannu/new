@@ -504,7 +504,7 @@
             height: min-content;
             justify-content: center;
             overflow: visible;
-            padding: 200px 40px 150px;
+            padding: 100px 40px 150px !important;
             position: relative;
             transform-style: preserve-3d;
             width: 100%;
@@ -690,7 +690,7 @@
             flex: none;
             flex-direction: column;
             flex-wrap: nowrap;
-            gap: 64px;
+            gap: 32px !important;
             height: min-content;
             justify-content: flex-start;
             overflow: visible;
@@ -721,7 +721,7 @@
             height: min-content;
             justify-content: center;
             overflow: visible;
-            padding: 0px 0 !important;
+            padding: 100px 0 0 0 !important;
             position: relative;
             width: 1088px
         }
@@ -5425,7 +5425,25 @@ body, html {
         background-color: #060608;
     }
 }
+.framer-1uxt1d {
+    width: 100% !important; /* ✅ Responsive width */
+    max-width: 1168px !important; /* ✅ Maintain desktop max-width */
+    box-sizing: border-box !important;
+}
+
+/* Tablet-specific fixes */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .framer-1uxt1d {
+        padding: 0 20px !important; /* Add breathing room */
+    }
+    
+    .framer-1uxt1d h3 {
+        --framer-font-size: clamp(120px, 15vw, 180px) !important;
+        --framer-line-height: clamp(100px, 12vw, 150px) !important;
+    }
+}
 </style>
+
 
     
 </head>
@@ -8937,7 +8955,7 @@ function applyVideoOverlays() {
                 mix-blend-mode: screen;
                 
                 /* Option 2: Filter adjustments to match background */
-                // filter: brightness(0.8) contrast(1.2) saturate(0.9);
+                // filter: brightness(0.8) contrast(1.2) saturate(0.4);
                 
                 /* Option 3: Slight transparency */
                 opacity: 0.85;
@@ -9518,6 +9536,57 @@ if (isMobileDevice()) {
                 transform: scale(1.3) !important;
             }
             
+            /* Navigation buttons */
+            /* Navigation buttons */
+            // .nav-buttons-container {
+            //     position: absolute !important;
+            //     top: 94% !important;
+            //     left: 0 !important;
+            //     right: 0 !important;
+            //     transform: translateY(-50%) !important;
+            //     display: flex !important;
+            //     justify-content: space-between !important;
+            //     padding: 0 40px !important;
+            //     z-index: 60 !important;
+            //     pointer-events: none !important;
+            // }
+            
+            // .nav-button {
+            //     width: 50px !important;
+            //     height: 50px !important;
+            //     border-radius: 50% !important;
+            //     background: #83c230 !important;
+            //     border: none !important;
+            //     cursor: pointer !important;
+            //     display: flex !important;
+            //     align-items: center !important;
+            //     justify-content: center !important;
+            //     transition: all 0.3s ease !important;
+            //     color: white !important;
+            //     font-size: 20px !important;
+            //     font-weight: bold !important;
+            //     box-shadow: 0 4px 12px rgba(131, 194, 48, 0.3) !important;
+            //     pointer-events: auto !important;
+            // }
+            
+            // .nav-button:hover {
+            //     background: #6ba025 !important;
+            //     transform: scale(1.1) !important;
+            //     box-shadow: 0 6px 20px rgba(131, 194, 48, 0.4) !important;
+            // }
+            
+            // .nav-button:active {
+            //     transform: scale(0.95) !important;
+            // }
+            
+            // .nav-button.left-nav::before {
+            //     content: "←" !important;
+            // }
+            
+            // .nav-button.right-nav::before {
+            //     content: "→" !important;
+            // }
+            
             /* Mobile responsive - Enhanced card size for better image visibility */
             @media (max-width: 768px) {
                 #horizontal-cards-scroll-container {
@@ -9576,7 +9645,8 @@ if (isMobileDevice()) {
                     font-size: 14px !important;
                 }
                 
-                .scroll-progress-dots {
+                .scroll-progress-dots,
+                .nav-buttons-container {
                     display: none !important;
                 }
             }
@@ -9665,6 +9735,27 @@ if (isMobileDevice()) {
             wrapper.appendChild(cardEl);
         });
         
+        // Create navigation buttons
+        const navButtonsContainer = document.createElement('div');
+        navButtonsContainer.className = 'nav-buttons-container';
+        
+        const leftButton = document.createElement('button');
+        leftButton.className = 'nav-button left-nav';
+        leftButton.addEventListener('click', () => {
+            const newIndex = targetIndex === 0 ? cardData.length - 1 : targetIndex - 1;
+            navigateToCard(newIndex);
+        });
+        
+        const rightButton = document.createElement('button');
+        rightButton.className = 'nav-button right-nav';
+        rightButton.addEventListener('click', () => {
+            const newIndex = targetIndex === cardData.length - 1 ? 0 : targetIndex + 1;
+            navigateToCard(newIndex);
+        });
+        
+        navButtonsContainer.appendChild(leftButton);
+        navButtonsContainer.appendChild(rightButton);
+        
         // Create progress dots
         const progressDots = document.createElement('div');
         progressDots.className = 'scroll-progress-dots';
@@ -9683,6 +9774,7 @@ if (isMobileDevice()) {
             progressDots.appendChild(dot);
         }
         
+        wrapper.appendChild(navButtonsContainer);
         wrapper.appendChild(progressDots);
         section.appendChild(wrapper);
         scrollContainer.appendChild(section);
@@ -10066,7 +10158,7 @@ if (isMobileDevice()) {
         }
     }, 2000);
     
-            console.log('🚀 Horizontal cards script loaded!');
+    console.log('🚀 Horizontal cards script loaded!');
 })();
 </script>
 <!-- //Navbar for mobile -->
@@ -12155,7 +12247,7 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 padding: 60px 20px 40px;
                 position: relative;
                 overflow: hidden;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             }
 
             .content-wrapper {
@@ -12171,9 +12263,9 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 font-weight: 700;
                 color: white;
                 line-height: 1.1;
-                margin-bottom: 40px;
+                margin-bottom: 20px;
                 letter-spacing: -0.02em;
-                margin-top: 100px;
+                margin-top: 60%;
 
             }
 
@@ -12181,14 +12273,14 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 font-size: 1.25rem;
                 color: rgba(255, 255, 255, 0.95);
                 line-height: 1.4;
-                margin-bottom: 40px;
+                margin-bottom: 20px;
                 font-weight: 400;
             }
 
             .button-container {
                 display: flex;
                 flex-direction: column;
-                gap: 26px;
+                gap: 8px !important;
                 margin-bottom: 40px;
             }
 
@@ -12277,6 +12369,7 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
             @media (max-width: 480px) {
                 .chainshields-container {
                     padding: 40px 16px 30px;
+                    height: 100vh !important;
                 }
                 
                 .main-heading {
@@ -12285,7 +12378,7 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 
                 .subheading {
                     font-size: 1.1rem;
-                    margin-bottom: 40px;
+                    margin-bottom: 20px;
                 }
                 
                 .btn {
