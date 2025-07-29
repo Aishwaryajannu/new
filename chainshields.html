@@ -9893,7 +9893,8 @@ if (isMobileDevice()) {
     let isScrollLocked = false;
     let scrollAccumulator = 0;
     let exitScrollAccumulator = 0;
-    const scrollThreshold = 90;
+    const scrollThresholdDown = 90;
+    const scrollThresholdUp = 90;
     const exitThreshold = 60;
     let isExiting = false;
 
@@ -9937,77 +9938,80 @@ if (isMobileDevice()) {
     }
 
     function handleScroll(event) {
-        if (window.innerWidth <= 768) return;
+    if (window.innerWidth <= 768) return;
+    
+    const scrollContainer = document.getElementById('horizontal-cards-scroll-container');
+    if (!scrollContainer) return;
+    
+    const rect = scrollContainer.getBoundingClientRect();
+    const isInView = rect.top <= window.innerHeight * 0.1 && rect.bottom >= window.innerHeight * 0.9;
+    const isNearView = rect.top <= window.innerHeight && rect.bottom >= 0;
+    
+    if (isInView && !isExiting) {
+        event.preventDefault();
         
-        const scrollContainer = document.getElementById('horizontal-cards-scroll-container');
-        if (!scrollContainer) return;
+        if (!isScrollLocked) {
+            isScrollLocked = true;
+            document.body.style.overflow = 'hidden';
+            scrollAccumulator = 0;
+            exitScrollAccumulator = 0;
+            console.log('🔒 Page scroll locked - horizontal navigation active');
+        }
         
-        const rect = scrollContainer.getBoundingClientRect();
-        const isInView = rect.top <= window.innerHeight * 0.1 && rect.bottom >= window.innerHeight * 0.9;
-        const isNearView = rect.top <= window.innerHeight && rect.bottom >= 0;
+        const delta = event.deltaY || event.detail || -event.wheelDelta;
+        const scrollIntensity = Math.abs(delta);
         
-        if (isInView && !isExiting) {
-            event.preventDefault();
-            
-            if (!isScrollLocked) {
-                isScrollLocked = true;
-                document.body.style.overflow = 'hidden';
-                scrollAccumulator = 0;
-                exitScrollAccumulator = 0;
-                console.log('🔒 Page scroll locked - horizontal navigation active');
-            }
-            
-            const delta = event.deltaY || event.detail || -event.wheelDelta;
-            const scrollIntensity = Math.abs(delta);
-            
-            // Only process significant scroll events
-            if (scrollIntensity < 3) return;
-            
-            scrollAccumulator += delta;
-            
-            // ENHANCED BOUNDARY LOGIC
-            const isFirstCard = targetIndex === 0;
-            const isLastCard = targetIndex === cardData.length - 1;
-            
-            if (Math.abs(scrollAccumulator) >= scrollThreshold) {
-                if (scrollAccumulator > 0 && !isLastCard) {
-                    // Normal forward navigation
-                    targetIndex++;
-                    smoothTransitionToTarget();
-                    resetScrollAccumulators();
-                    
-                } else if (scrollAccumulator < 0 && !isFirstCard) {
-                    // Normal backward navigation  
-                    targetIndex--;
-                    smoothTransitionToTarget();
-                    resetScrollAccumulators();
-                    
-                } else if (scrollAccumulator > 0 && isLastCard) {
-                    // AT LAST CARD - Enhanced exit logic
-                    handleBoundaryExit('down', delta, scrollIntensity);
-                    
-                } else if (scrollAccumulator < 0 && isFirstCard) {
-                    // AT FIRST CARD - Enhanced exit logic
-                    handleBoundaryExit('up', Math.abs(delta), scrollIntensity);
-                }
-            }
-            
-            // Progressive scroll decay to prevent stuck feeling
-            scrollAccumulator *= 0.92;
-            
-            // Cap accumulator to prevent infinite growth
-            if (Math.abs(scrollAccumulator) > 200) {
-                scrollAccumulator = scrollAccumulator > 0 ? 200 : -200;
-            }
-            
-        } else if (isNearView && isExiting) {
-            return;
-        } else {
-            if (isScrollLocked || isExiting) {
-                resetScrollState();
+        // Only process significant scroll events
+        if (scrollIntensity < 3) return;
+        
+        scrollAccumulator += delta;
+        
+        // ENHANCED BOUNDARY LOGIC with different thresholds
+        const isFirstCard = targetIndex === 0;
+        const isLastCard = targetIndex === cardData.length - 1;
+        
+        // Use different thresholds for up vs down scrolling
+        const currentThreshold = scrollAccumulator > 0 ? scrollThresholdDown : scrollThresholdUp;
+        
+        if (Math.abs(scrollAccumulator) >= currentThreshold) {
+            if (scrollAccumulator > 0 && !isLastCard) {
+                // Normal forward navigation (down scroll)
+                targetIndex++;
+                smoothTransitionToTarget();
+                resetScrollAccumulators();
+                
+            } else if (scrollAccumulator < 0 && !isFirstCard) {
+                // Normal backward navigation (up scroll) - now less sensitive
+                targetIndex--;
+                smoothTransitionToTarget();
+                resetScrollAccumulators();
+                
+            } else if (scrollAccumulator > 0 && isLastCard) {
+                // AT LAST CARD - Enhanced exit logic
+                handleBoundaryExit('down', delta, scrollIntensity);
+                
+            } else if (scrollAccumulator < 0 && isFirstCard) {
+                // AT FIRST CARD - Enhanced exit logic
+                handleBoundaryExit('up', Math.abs(delta), scrollIntensity);
             }
         }
+        
+        // Progressive scroll decay to prevent stuck feeling
+        scrollAccumulator *= 0.92;
+        
+        // Cap accumulator to prevent infinite growth
+        if (Math.abs(scrollAccumulator) > 200) {
+            scrollAccumulator = scrollAccumulator > 0 ? 200 : -200;
+        }
+        
+    } else if (isNearView && isExiting) {
+        return;
+    } else {
+        if (isScrollLocked || isExiting) {
+            resetScrollState();
+        }
     }
+}
     
     // Smooth exit from cards section
     function startSmoothBoundaryExit(direction) {
