@@ -3929,6 +3929,7 @@
             visibility: visible !important;
         }
     </style>
+    <!-- atyp font -->
     <style>
         /* Font-face declaration with better loading */
         @font-face {
@@ -4177,6 +4178,7 @@
             overflow: hidden;
         }
     </style>
+    <!-- custom contact form -->
     <style>
     /* Hide the entire original main section */
 .framer-c5qi9 {
@@ -4508,6 +4510,7 @@ body, html {
   }
 }
     </style>
+    <!-- footer of website -->
        <style>
         /* Import local Orbitron font with multiple fallbacks */
         @font-face {
@@ -4674,6 +4677,7 @@ body, html {
 }
         
     </style>
+    <!-- navbar css -->
  <style>
         /* Hide original navbar on desktop and tablet only */
         @media screen and (min-width: 768px) {
@@ -4697,7 +4701,7 @@ body, html {
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            max-width: 95vw;
+            max-width: fit-content;
             width: fit-content;
             min-width: 600px;
             opacity: 0;
@@ -4799,7 +4803,7 @@ body, html {
         /* Large desktops (1400px and up) */
         @media screen and (min-width: 1400px) {
             .custom-navbar {
-                max-width: 80vw;
+                max-width: fit-content;
                 padding: 14px 28px;
             }
             
@@ -4816,7 +4820,7 @@ body, html {
         /* Medium to large desktops (1200px to 1399px) */
         @media screen and (max-width: 1399px) and (min-width: 1200px) {
             .custom-navbar {
-                max-width: 85vw;
+                max-width: fit-content;
                 padding: 12px 24px;
             }
             
@@ -4833,7 +4837,7 @@ body, html {
         /* Standard desktops (1024px to 1199px) */
         @media screen and (max-width: 1199px) and (min-width: 1024px) {
             .custom-navbar {
-                max-width: 90vw;
+                max-width: fit-content;
                 padding: 10px 20px;
             }
             
@@ -4854,7 +4858,7 @@ body, html {
         /* Small desktops and large tablets (900px to 1023px) */
         @media screen and (max-width: 1023px) and (min-width: 900px) {
             .custom-navbar {
-                max-width: 92vw;
+                max-width: fit-content;
                 padding: 8px 16px;
                 min-width: 500px;
             }
@@ -4876,7 +4880,7 @@ body, html {
         /* Tablets and small laptops (768px to 899px) */
         @media screen and (max-width: 899px) and (min-width: 768px) {
             .custom-navbar {
-                max-width: 95vw;
+                max-width: fit-content;
                 padding: 6px 12px;
                 min-width: 450px;
             }
@@ -5449,95 +5453,6 @@ body, html {
 </head>
 
 <body>
-    <script>
-(function() {
-    // Function to add refresh functionality to logo
-    function addLogoRefresh() {
-        // Find the logo link element
-        const logoLink = document.querySelector('a.framer-ygh8g6[data-framer-name="Logo"]');
-        
-        if (logoLink) {
-            // Remove existing href and add click event for refresh
-            logoLink.removeAttribute('href');
-            logoLink.style.cursor = 'pointer';
-            
-            // Add click event listener for page refresh
-            logoLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.reload();
-            });
-            
-            console.log('Logo refresh functionality added successfully');
-        } else {
-            console.log('Logo link not found, trying alternative selectors...');
-            
-            // Alternative approach: look for any link containing logo image
-            const allLinks = document.querySelectorAll('a');
-            let found = false;
-            
-            allLinks.forEach(link => {
-                const img = link.querySelector('img[alt="Logo"]');
-                if (img && link.getAttribute('href') === './') {
-                    link.removeAttribute('href');
-                    link.style.cursor = 'pointer';
-                    
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        window.location.reload();
-                    });
-                    
-                    found = true;
-                    console.log('Logo refresh added using alternative method');
-                }
-            });
-            
-            if (!found) {
-                // Last resort: search for any element with data-framer-name="Logo"
-                const logoElements = document.querySelectorAll('[data-framer-name="Logo"]');
-                logoElements.forEach(element => {
-                    element.style.cursor = 'pointer';
-                    element.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        window.location.reload();
-                    });
-                    console.log('Logo refresh added to framer element');
-                });
-            }
-        }
-    }
-    
-    // Function to observe DOM changes and update when needed
-    function observeChanges() {
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList') {
-                    addLogoRefresh();
-                }
-            });
-        });
-        
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
-    
-    // Run immediately if DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            addLogoRefresh();
-            observeChanges();
-        });
-    } else {
-        addLogoRefresh();
-        observeChanges();
-    }
-    
-    // Also run after a short delay to catch dynamically loaded content
-    setTimeout(addLogoRefresh, 1000);
-    setTimeout(addLogoRefresh, 3000);
-})();
-</script>
     <script async="" src="https://events.framer.com/script?v=2"
         data-fid="8e213f1fc6f117810c97490a057f510a51860bd5e7616d145578017e4babda89" data-no-nt=""></script>
     <!-- Start of bodyStart -->
@@ -7408,6 +7323,7 @@ function initializeFormFunctionality() {
     }
 }
 
+
 // Additional function to handle dynamic content loading
 function initCustomForm() {
     // This function can be called if the content is loaded dynamically
@@ -8574,290 +8490,7 @@ initCustomForm();
 </script>
    
     
-     <!-- // navigate to different page-->
-   <!-- <script type="text/javascript">
-        (function() {
-    'use strict';
-    
-    // Configuration - Update these paths based on your server structure
-    const CONFIG = {
-        // Your main page filename (change if different)
-        mainPageFile: 'chainshields.html',  // or 'index.html' if you rename it
-        
-        // Base path (update based on your hosting structure)
-        // Leave empty string '' if files are in root directory
-        // Use '/subfolder/' if your site is in a subfolder
-        basePath: '',  // Change to '/your-folder/' if needed
-        
-        // Alternative: Auto-detect base path (recommended for most cases)
-        autoDetectPath: true
-    };
-    
-    // Wait for DOM to be fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initNavigation);
-    } else {
-        initNavigation();
-    }
-    
-    function initNavigation() {
-        // Get current page info
-        const currentPath = window.location.pathname;
-        const currentFile = currentPath.split('/').pop() || CONFIG.mainPageFile;
-        
-        // Determine base path
-        let basePath;
-        if (CONFIG.autoDetectPath) {
-            basePath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-        } else {
-            basePath = CONFIG.basePath;
-        }
-        
-        // Check if we're on the main page
-        const isMainPage = currentFile === CONFIG.mainPageFile || 
-                          currentFile === '' ||
-                          currentPath.endsWith('/');
-        
-        console.log('Navigation Info:', {
-            currentPath,
-            currentFile,
-            basePath,
-            isMainPage
-        });
-        
-        // Function to smooth scroll to target element (for same page navigation)
-        function smoothScrollTo(targetElement) {
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                    inline: 'nearest'
-                });
-            }
-        }
-        
-        // Function to handle navigation clicks
-        function handleNavClick(event, targetSelector, sectionName) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            if (isMainPage) {
-                // If we're on the main page, scroll to the section
-                const targetElement = document.querySelector(targetSelector);
-                if (targetElement) {
-                    smoothScrollTo(targetElement);
-                    
-                    // Update URL without triggering page reload
-                    if (history.pushState) {
-                        const newUrl = window.location.origin + basePath + CONFIG.mainPageFile + '#' + sectionName;
-                        history.pushState(null, null, newUrl);
-                    }
-                } else {
-                    console.warn('Target element not found:', targetSelector);
-                }
-            } else {
-                // If we're on a different page, navigate to main page with hash
-                const targetUrl = window.location.origin + basePath + CONFIG.mainPageFile + '#' + sectionName;
-                window.location.href = targetUrl;
-            }
-        }
-        
-        // Navigation configuration mapping data-nav attributes to sections
-        const navConfig = {
-            'home': {
-                targetSelector: '[data-framer-name="2 Columns Text Image"]',
-                sectionName: 'home'
-            },
-            'why-chainshields': {
-                targetSelector: '[data-framer-name="Features Product"]',
-                sectionName: 'why-chainshields'
-            },
-            'what-we-do': {
-                targetSelector: '[data-framer-name="Services"]',
-                sectionName: 'what-we-do'
-            },
-            'industries': {
-                targetSelector: '[data-framer-name="Branding"]',
-                sectionName: 'industries'
-            },
-            'connect-now': {
-                targetSelector: '[data-framer-name="Hero"]',
-                sectionName: 'connect-now'
-            }
-        };
-        
-        // Setup navigation for all nav links with data-nav attributes
-        const navLinks = document.querySelectorAll('a[data-nav]');
-        navLinks.forEach(function(link) {
-            const navType = link.getAttribute('data-nav');
-            const config = navConfig[navType];
-            
-            if (config) {
-                link.addEventListener('click', function(e) {
-                    handleNavClick(e, config.targetSelector, config.sectionName);
-                }, true);
-                
-                console.log('Navigation setup complete for:', navType);
-            }
-        });
-        
-        // Setup footer navigation links
-        function setupFooterNavigation() {
-            // Footer links mapping - using data-framer-name to identify containers
-            const footerNavMapping = {
-                'Home': navConfig['home'],
-                'How it Works': navConfig['what-we-do'],
-                'Industries': navConfig['industries'],
-                'Why Chainshields': navConfig['why-chainshields'],
-                'Contact': navConfig['connect-now']
-            };
-            
-            // Find footer links container
-            const footerLinksContainer = document.querySelector('[data-framer-name="footer-links"]');
-            
-            if (footerLinksContainer) {
-                // Method 1: Target specific footer containers by data-framer-name
-                Object.keys(footerNavMapping).forEach(function(linkText) {
-                    const config = footerNavMapping[linkText];
-                    if (config) {
-                        // Find the container with matching data-framer-name
-                        let container = null;
-                        if (linkText === 'Home') {
-                            container = footerLinksContainer.querySelector('[data-framer-name="Home"]');
-                        } else if (linkText === 'How it Works') {
-                            container = footerLinksContainer.querySelector('[data-framer-name="Projects"]');
-                        } else if (linkText === 'Industries') {
-                            container = footerLinksContainer.querySelector('[data-framer-name="Pricing"]');
-                        } else if (linkText === 'Why Chainshields') {
-                            // There are two containers with "Pricing" name, get the second one
-                            const pricingContainers = footerLinksContainer.querySelectorAll('[data-framer-name="Pricing"]');
-                            container = pricingContainers[1] || pricingContainers[0];
-                        } else if (linkText === 'Contact') {
-                            container = footerLinksContainer.querySelector('[data-framer-name="Contact"]');
-                        }
-                        
-                        if (container) {
-                            // Find the link or text element within the container
-                            const linkElement = container.querySelector('a') || container.querySelector('.framer-text');
-                            
-                            if (linkElement) {
-                                // Add click event listener
-                                linkElement.addEventListener('click', function(e) {
-                                    handleNavClick(e, config.targetSelector, config.sectionName);
-                                }, true);
-                                
-                                // Update href for proper link behavior
-                                if (linkElement.tagName === 'A') {
-                                    linkElement.href = '#' + config.sectionName;
-                                } else {
-                                    // If it's not a link, make the parent clickable
-                                    container.style.cursor = 'pointer';
-                                    container.addEventListener('click', function(e) {
-                                        handleNavClick(e, config.targetSelector, config.sectionName);
-                                    }, true);
-                                }
-                                
-                                console.log('Footer navigation setup complete for:', linkText);
-                            }
-                        }
-                    }
-                });
-                
-                // Method 2: Fallback - find by text content
-                const footerLinks = footerLinksContainer.querySelectorAll('a, .framer-text');
-                footerLinks.forEach(function(element) {
-                    const text = element.textContent.trim();
-                    const config = footerNavMapping[text];
-                    
-                    if (config && !element.hasAttribute('data-footer-nav-setup')) {
-                        element.setAttribute('data-footer-nav-setup', 'true');
-                        
-                        element.addEventListener('click', function(e) {
-                            handleNavClick(e, config.targetSelector, config.sectionName);
-                        }, true);
-                        
-                        if (element.tagName === 'A') {
-                            element.href = '#' + config.sectionName;
-                        }
-                        
-                        console.log('Footer navigation fallback setup for:', text);
-                    }
-                });
-            }
-        }
-        
-        // Call footer navigation setup
-        setupFooterNavigation();
-        
-        // Fallback: Setup navigation for links with framer-text spans
-        const framerTextLinks = document.querySelectorAll('a[href="./"] .framer-text, a[href="#"] .framer-text');
-        framerTextLinks.forEach(function(textElement) {
-            const buttonText = textElement.textContent.trim();
-            const link = textElement.closest('a');
-            
-            if (link && !link.hasAttribute('data-nav') && !link.hasAttribute('data-footer-nav-setup')) {
-                let config = null;
-                
-                switch(buttonText) {
-                    case 'Home':
-                        config = navConfig['home'];
-                        break;
-                    case 'Why Chainshields':
-                        config = navConfig['why-chainshields'];
-                        break;
-                    case 'What we do':
-                    case 'How it works':
-                        config = navConfig['what-we-do'];
-                        break;
-                    case 'Industries':
-                        config = navConfig['industries'];
-                        break;
-                    case 'Connect Now':
-                    case 'Contact Now':
-                    case 'Contact':
-                        config = navConfig['connect-now'];
-                        break;
-                }
-                
-                if (config) {
-                    link.addEventListener('click', function(e) {
-                        handleNavClick(e, config.targetSelector, config.sectionName);
-                    }, true);
-                    
-                    console.log('Fallback navigation setup complete for:', buttonText);
-                }
-            }
-        });
-        
-        // Handle hash navigation on page load
-        if (isMainPage && window.location.hash) {
-            setTimeout(function() {
-                const hash = window.location.hash.substring(1);
-                const config = Object.values(navConfig).find(nav => nav.sectionName === hash);
-                if (config) {
-                    const targetElement = document.querySelector(config.targetSelector);
-                    if (targetElement) {
-                        smoothScrollTo(targetElement);
-                    }
-                }
-            }, 1000); // Increased delay for server-hosted sites
-        }
-        
-        console.log('Production navigation script initialized successfully');
-    }
-    
-    // Backup initialization with longer delay for server environments
-    setTimeout(function() {
-        if (typeof initNavigation === 'function') {
-            initNavigation();
-        }
-    }, 2000);
-    
-})();
-
-// LinkedIn button redirecting
-
-</script> -->
+     
 <!-- //hero section video  -->
       <script>
 // Wait for Framer to load, then apply video overlays
@@ -9267,7 +8900,7 @@ if (isMobileDevice()) {
 })();
 </script>
     
-<!-- //script of custom cards mobile -->
+<!-- //script of custom cards -->
 <script>
 // Horizontal Scrolling Portrait Cards - Circular Movement with Wraparound
 (function() {
@@ -11774,391 +11407,16 @@ document.addEventListener('click', function(e) {
     });
 })();
 </script>
-<!-- //website performance improver -->
-    <script>
-// Optimizes loading speed by managing script execution and resource loading
-
-class ChainShieldsOptimizer {
-    constructor() {
-        this.loadStartTime = performance.now();
-        this.criticalScripts = [];
-        this.deferredScripts = [];
-        this.loadedScripts = new Set();
-        this.frameCallbacks = [];
-        this.isFramerOverridden = false;
-        
-        this.init();
-    }
-
-    init() {
-        // Start optimization immediately
-        this.optimizeInitialLoad();
-        this.setupFramerOptimization();
-        this.implementLazyLoading();
-        this.optimizeResources();
-    }
-
-    // Optimize initial page load
-    optimizeInitialLoad() {
-        // Preload critical resources
-        this.preloadCriticalResources();
-        
-        // Optimize DOM ready state
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.onDOMReady());
-        } else {
-            this.onDOMReady();
-        }
-    }
-
-    // Setup Framer.js optimization
-    setupFramerOptimization() {
-        // Override heavy Framer operations
-        const originalFramerMethods = {};
-        
-        // Debounce resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                this.handleResize();
-            }, 100);
-        });
-
-        // Optimize animation frame callbacks
-        const originalRequestAnimationFrame = window.requestAnimationFrame;
-        window.requestAnimationFrame = (callback) => {
-            // Throttle animation frames if too many are queued
-            if (this.frameCallbacks.length > 10) {
-                return setTimeout(callback, 16);
-            }
-            
-            this.frameCallbacks.push(callback);
-            return originalRequestAnimationFrame(() => {
-                const cb = this.frameCallbacks.shift();
-                if (cb) cb();
-            });
-        };
-    }
-
-    // Preload critical resources
-    preloadCriticalResources() {
-        const criticalResources = [
-            { href: '/css/critical.css', as: 'style' },
-            { href: '/js/critical.js', as: 'script' },
-            { href: '/fonts/main.woff2', as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }
-        ];
-
-        criticalResources.forEach(resource => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.href = resource.href;
-            link.as = resource.as;
-            if (resource.type) link.type = resource.type;
-            if (resource.crossorigin) link.crossOrigin = resource.crossorigin;
-            document.head.appendChild(link);
-        });
-    }
-
-    // Handle DOM ready state
-    onDOMReady() {
-        // Load critical scripts first
-        this.loadCriticalScripts();
-        
-        // Setup intersection observer for lazy loading
-        this.setupIntersectionObserver();
-        
-        // Optimize existing elements
-        this.optimizeExistingElements();
-        
-        // Load non-critical scripts after a delay
-        setTimeout(() => {
-            this.loadDeferredScripts();
-        }, 500);
-    }
-
-    // Load critical scripts synchronously
-    loadCriticalScripts() {
-        const criticalScripts = [
-            '/js/core.js',
-            '/js/navigation.js'
-        ];
-
-        criticalScripts.forEach(src => {
-            this.loadScript(src, true);
-        });
-    }
-
-    // Load deferred scripts asynchronously
-    loadDeferredScripts() {
-        const deferredScripts = [
-            '/js/animations.js',
-            '/js/analytics.js',
-            '/js/social.js'
-        ];
-
-        deferredScripts.forEach(src => {
-            this.loadScript(src, false);
-        });
-    }
-
-    // Smart script loading
-    loadScript(src, isBlocking = false) {
-        if (this.loadedScripts.has(src)) return;
-
-        const script = document.createElement('script');
-        script.src = src;
-        script.async = !isBlocking;
-        script.defer = !isBlocking;
-        
-        script.onload = () => {
-            this.loadedScripts.add(src);
-            console.log(`✓ Loaded: ${src}`);
-        };
-        
-        script.onerror = () => {
-            console.warn(`✗ Failed to load: ${src}`);
-        };
-
-        document.head.appendChild(script);
-    }
-
-    // Implement lazy loading for images and iframes
-    implementLazyLoading() {
-        const lazyElements = document.querySelectorAll('img[data-src], iframe[data-src]');
-        
-        lazyElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transition = 'opacity 0.3s ease';
-        });
-    }
-
-    // Setup Intersection Observer for lazy loading
-    setupIntersectionObserver() {
-        const options = {
-            root: null,
-            rootMargin: '50px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    
-                    if (element.dataset.src) {
-                        element.src = element.dataset.src;
-                        element.style.opacity = '1';
-                        element.removeAttribute('data-src');
-                        observer.unobserve(element);
-                    }
-                }
-            });
-        }, options);
-
-        // Observe all lazy-loadable elements
-        document.querySelectorAll('[data-src]').forEach(element => {
-            observer.observe(element);
-        });
-    }
-
-    // Optimize existing elements
-    optimizeExistingElements() {
-        // Remove unused CSS
-        this.removeUnusedCSS();
-        
-        // Optimize images
-        this.optimizeImages();
-        
-        // Minify inline styles
-        this.minifyInlineStyles();
-    }
-
-    // Remove unused CSS
-    removeUnusedCSS() {
-        const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-        const usedSelectors = new Set();
-
-        // Collect all used selectors
-        document.querySelectorAll('*').forEach(element => {
-            if (element.className) {
-                element.className.split(' ').forEach(className => {
-                    usedSelectors.add(`.${className}`);
-                });
-            }
-            if (element.id) {
-                usedSelectors.add(`#${element.id}`);
-            }
-        });
-
-        // This is a simplified approach - in production, you'd want a more sophisticated CSS analyzer
-        console.log(`Found ${usedSelectors.size} used selectors`);
-    }
-
-    // Optimize images
-    optimizeImages() {
-        const images = document.querySelectorAll('img');
-        
-        images.forEach(img => {
-            // Add loading="lazy" if not present
-            if (!img.hasAttribute('loading')) {
-                img.loading = 'lazy';
-            }
-            
-            // Add proper alt attributes if missing
-            if (!img.hasAttribute('alt')) {
-                img.alt = 'Image';
-            }
-        });
-    }
-
-    // Minify inline styles
-    minifyInlineStyles() {
-        const elementsWithStyle = document.querySelectorAll('[style]');
-        
-        elementsWithStyle.forEach(element => {
-            const style = element.style.cssText;
-            const minified = style.replace(/\s+/g, ' ').trim();
-            element.style.cssText = minified;
-        });
-    }
-
-    // Handle resize events efficiently
-    handleResize() {
-        // Debounced resize handler
-        const event = new CustomEvent('optimizedResize', {
-            detail: {
-                width: window.innerWidth,
-                height: window.innerHeight
-            }
-        });
-        
-        window.dispatchEvent(event);
-    }
-
-    // Optimize resources based on connection
-    optimizeResources() {
-        if ('connection' in navigator) {
-            const connection = navigator.connection;
-            
-            // Adjust loading strategy based on connection speed
-            if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
-                this.enableLowBandwidthMode();
-            } else if (connection.effectiveType === '4g') {
-                this.enableHighBandwidthMode();
-            }
-        }
-    }
-
-    // Enable low bandwidth optimizations
-    enableLowBandwidthMode() {
-        document.documentElement.setAttribute('data-connection', 'slow');
-        
-        // Disable auto-play videos
-        document.querySelectorAll('video[autoplay]').forEach(video => {
-            video.removeAttribute('autoplay');
-        });
-        
-        // Reduce image quality
-        document.querySelectorAll('img').forEach(img => {
-            if (img.src && img.src.includes('quality=')) {
-                img.src = img.src.replace(/quality=\d+/, 'quality=50');
-            }
-        });
-    }
-
-    // Enable high bandwidth optimizations
-    enableHighBandwidthMode() {
-        document.documentElement.setAttribute('data-connection', 'fast');
-        
-        // Preload next page resources
-        this.preloadNextPageResources();
-    }
-
-    // Preload resources for next pages
-    preloadNextPageResources() {
-        const nextPageLinks = document.querySelectorAll('a[href]');
-        const preloadedPages = new Set();
-        
-        nextPageLinks.forEach(link => {
-            if (preloadedPages.size >= 3) return; // Limit preloading
-            
-            const href = link.getAttribute('href');
-            if (href && href.startsWith('/') && !preloadedPages.has(href)) {
-                const prefetchLink = document.createElement('link');
-                prefetchLink.rel = 'prefetch';
-                prefetchLink.href = href;
-                document.head.appendChild(prefetchLink);
-                preloadedPages.add(href);
-            }
-        });
-    }
-
-    // Get performance metrics
-    getPerformanceMetrics() {
-        const loadTime = performance.now() - this.loadStartTime;
-        
-        return {
-            loadTime: Math.round(loadTime),
-            scriptsLoaded: this.loadedScripts.size,
-            domElements: document.querySelectorAll('*').length,
-            memoryUsage: performance.memory ? {
-                used: Math.round(performance.memory.usedJSHeapSize / 1024 / 1024),
-                total: Math.round(performance.memory.totalJSHeapSize / 1024 / 1024)
-            } : null
-        };
-    }
-
-    // Public method to add custom optimization
-    addCustomOptimization(name, callback) {
-        console.log(`Adding custom optimization: ${name}`);
-        callback();
-    }
-}
-
-// Initialize the optimizer
-const chainShieldsOptimizer = new ChainShieldsOptimizer();
-
-// Export for external use
-window.ChainShieldsOptimizer = chainShieldsOptimizer;
-
-// Performance monitoring
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const metrics = chainShieldsOptimizer.getPerformanceMetrics();
-        console.log('ChainShields Performance Metrics:', metrics);
-    }, 1000);
-});
-
-// Additional utility functions
-window.optimizeCustomScript = function(scriptFunction, priority = 'normal') {
-    const execute = () => {
-        try {
-            scriptFunction();
-        } catch (error) {
-            console.error('Custom script error:', error);
-        }
-    };
-
-    if (priority === 'high') {
-        execute();
-    } else {
-        requestIdleCallback ? requestIdleCallback(execute) : setTimeout(execute, 0);
-    }
-};
-
-// CSS optimization helper
-window.inlineCSS = function(selector, styles) {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach(element => {
-        Object.assign(element.style, styles);
-    });
-};
-
-console.log('🚀 ChainShields Website Optimizer loaded and running!');
-</script>
+ <!-- hero section for mobile    -->
 <script>
 (function() {
+    // Prevent multiple executions
+    if (window.chainshieldsInitialized) {
+        console.log('ChainShields already initialized, skipping...');
+        return;
+    }
+    window.chainshieldsInitialized = true;
+
     // Wait for DOM to be fully loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeSection);
@@ -12167,40 +11425,66 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
     }
 
     function initializeSection() {
-        // Wait a bit more for Framer to fully load
-        setTimeout(function() {
-            // Hide the original framer class
+        // Use a longer timeout and check if Framer is actually loaded
+        const maxAttempts = 10;
+        let attempts = 0;
+        
+        function tryInitialize() {
+            attempts++;
+            
+            // Check if our section already exists
+            if (document.querySelector('.chainshields-mobile-section')) {
+                console.log('ChainShields section already exists');
+                return;
+            }
+            
             const framerElement = document.querySelector('.framer-14nk84u');
-            if (framerElement) {
-                framerElement.style.display = 'none';
-                console.log('Framer element hidden');
-            }
-
-            // Insert CSS into head
-            document.head.insertAdjacentHTML('beforeend', styles);
-
-            // Insert HTML in place of the framer element
-            if (framerElement && framerElement.parentNode) {
-                // Insert before the framer element
-                framerElement.parentNode.insertBefore(
-                    (() => {
-                        const div = document.createElement('div');
-                        div.innerHTML = mobileHTML;
-                        return div.firstElementChild;
-                    })(),
-                    framerElement
-                );
-                console.log('New section inserted');
+            
+            if (framerElement || attempts >= maxAttempts) {
+                // Proceed with initialization
+                if (framerElement) {
+                    framerElement.style.display = 'none';
+                    console.log('Framer element hidden');
+                }
+                
+                // Check if styles are already injected
+                if (!document.querySelector('#chainshields-styles')) {
+                    document.head.insertAdjacentHTML('beforeend', styles);
+                }
+                
+                // Insert HTML
+                insertMobileSection(framerElement);
+                
+                // Add event listeners
+                setupEventListeners();
             } else {
-                // Fallback: insert at end of body
-                document.body.insertAdjacentHTML('beforeend', mobileHTML);
-                console.log('New section inserted at end of body');
+                // Try again after a short delay
+                setTimeout(tryInitialize, 200);
             }
-
-            // Add event listeners for buttons
-            setupEventListeners();
-        }, 500); // Wait 500ms for Framer to load
+        }
+        
+        tryInitialize();
     }
+
+    function insertMobileSection(framerElement) {
+        // Check again if section already exists
+        if (document.querySelector('.chainshields-mobile-section')) {
+            return;
+        }
+        
+        if (framerElement && framerElement.parentNode) {
+            // Insert before the framer element
+            const newSection = document.createElement('div');
+            newSection.innerHTML = mobileHTML;
+            framerElement.parentNode.insertBefore(newSection.firstElementChild, framerElement);
+            console.log('New section inserted before framer element');
+        } else {
+            // Fallback: insert at end of body
+            document.body.insertAdjacentHTML('beforeend', mobileHTML);
+            console.log('New section inserted at end of body');
+        }
+    }
+
     const mobileHTML = `
         <div class="chainshields-mobile-section">
             <div class="chainshields-container">
@@ -12232,26 +11516,31 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
         </div>
     `;
 
-    // Create and inject CSS styles
+    // Create and inject CSS styles with ID for tracking
     const styles = `
-        <style>
+        <style id="chainshields-styles">
             .chainshields-mobile-section {
                 display: none;
             }
 
+            /* Show only on mobile and tablet */
             @media (max-width: 1024px) {
                 .chainshields-mobile-section {
-                    display: block;
+                    display: block !important;
+                }
+                
+                /* Force hide framer element on mobile */
+                .framer-14nk84u {
+                    display: none !important;
                 }
             }
 
             .chainshields-container {
                 background: black;
-                // min-height: 50vh;
                 padding: 60px 20px 40px;
                 position: relative;
                 overflow: hidden;
-                // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                // min-height: 50vh;
             }
 
             .content-wrapper {
@@ -12270,7 +11559,6 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 margin-bottom: 20px;
                 letter-spacing: -0.02em;
                 margin-top: 60%;
-
             }
 
             .subheading {
@@ -12341,6 +11629,7 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 font-size: 12px;
             }
 
+            /* Tablet styles */
             @media (max-width: 1024px) and (min-width: 768px) {
                 .chainshields-container {
                     padding: 80px 40px 60px;
@@ -12370,14 +11659,16 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 }
             }
 
+            /* Mobile styles */
             @media (max-width: 480px) {
                 .chainshields-container {
                     padding: 40px 16px 30px;
-                    height: 100vh !important;
+                    min-height: 100vh !important;
                 }
                 
                 .main-heading {
                     font-size: 2.8rem;
+                    // margin-top: 60px;
                 }
                 
                 .subheading {
@@ -12402,49 +11693,42 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
                 background-size: 40px 40px;
                 z-index: 1;
             }
-
-            .framer-14nk84u {
-                display: none !important;
-            }
         </style>
     `;
 
     function setupEventListeners() {
-        // Wait for DOM to be ready and add event listeners
+        // Use a more robust approach to add event listeners
         setTimeout(function() {
             const demoBtn = document.getElementById('demo-btn');
             const learnBtn = document.getElementById('learn-btn');
             
-            if (demoBtn) {
+            if (demoBtn && !demoBtn.dataset.listenerAdded) {
                 demoBtn.addEventListener('click', handleDemoClick);
+                demoBtn.dataset.listenerAdded = 'true';
                 console.log('Demo button event listener added');
             }
             
-            if (learnBtn) {
+            if (learnBtn && !learnBtn.dataset.listenerAdded) {
                 learnBtn.addEventListener('click', handleLearnClick);
+                learnBtn.dataset.listenerAdded = 'true';
                 console.log('Learn button event listener added');
             }
         }, 100);
     }
 
-    // Add event listeners for buttons
     function handleDemoClick(e) {
         e.preventDefault();
-        // Replace this with your demo page URL or action
         window.location.href = 'request.html';
         console.log('Get a Demo clicked');
     }
 
     function handleLearnClick(e) {
         e.preventDefault();
-        // Replace this with your learn more page URL or action
         window.location.href = 'https://www.linkedin.com/company/chainshields/';
         console.log('Learn More clicked');
     }
 
-
-
-    // Smooth scroll for anchor links if needed
+    // Smooth scroll for anchor links
     document.addEventListener('click', function(e) {
         if (e.target.matches('a[href^="#"]')) {
             e.preventDefault();
@@ -12456,6 +11740,15 @@ console.log('🚀 ChainShields Website Optimizer loaded and running!');
             }
         }
     });
+
+    // Debug function to check current state
+    window.debugChainShields = function() {
+        console.log('ChainShields Debug Info:');
+        console.log('- Initialized:', window.chainshieldsInitialized);
+        console.log('- Mobile sections found:', document.querySelectorAll('.chainshields-mobile-section').length);
+        console.log('- Framer elements found:', document.querySelectorAll('.framer-14nk84u').length);
+        console.log('- Styles injected:', !!document.querySelector('#chainshields-styles'));
+    };
 
 })();
 </script>
